@@ -21,3 +21,20 @@ Movie.create(title: "Titanic", overview: "101-year-old Rose DeWitt Bukater tells
 Movie.create(title: "Ocean's Eight", overview: "Debbie Ocean, a criminal mastermind, gathers a crew of female thieves to pull off the heist of the century.", poster_url: "https://image.tmdb.org/t/p/original/MvYpKlpFukTivnlBhizGbkAe3v.jpg", rating: 7.0)
 
 puts "4 Movies created"
+
+url = "http://tmdb.lewagon.com/movie/top_rated"
+movies = JSON.parse(URI.open("#{url}").read)['results']
+movies.each do |movie|
+    puts "Creating #{movie['title']}"
+    base_poster_url = "https://image.tmdb.org/t/p/original"
+    Movie.create(
+      title: movie["title"],
+      overview: movie["overview"],
+      poster_url: "#{base_poster_url}#{movie["backdrop_path"]}",
+      rating: movie["vote_average"]
+    )
+  end
+
+puts "Movies from API created"
+
+puts "Finished"
