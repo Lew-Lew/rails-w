@@ -44,5 +44,26 @@
   
   <%# Render Modal %>
   <%= render "bookmarks/modal", list: @list, bookmark: @bookmark %>
+</div>
 
+<div class="section-reviews">
+  <div class="container border-top py-5">
+    <div> <%# Reviews Index %>
+       <h2>Reviews</h2>
+        <% @list.reviews.each do |review| %>
+          <div class="border-bottom">
+            <div class="mb-1">
+              <% review.rating.times do %>
+                <i class="fa-solid fa-star" style="color: #ffd43b;"></i>
+              <% end %>
+            </div>
+            <p><%= review.comment %></p>
+          </div>
+        <% end %>
+    </div>
+
+    <div> <%# New review form %>
+      <%= render "reviews/form", list: @list, review: @review %>
+    </div>
+  </div>
 </div>
