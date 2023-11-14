@@ -1,5 +1,21 @@
-<h1>All Lists</h1>
+<div class="section-header mb-5" style="background-image: url(<%= asset_path('cinema.jpg') %>);">
+  <h1 class="text-light">Save any kind of movie</h1>
+</div>
 
-<% @lists.each do |list| %>
-  <%= list.name %>
-<% end %>
+<div class="section-lists mb-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2>My lists</h2>
+      <%= link_to "Create a new list", new_list_path, class:"btn btn-success text-light" %>
+    </div>
+    <div>
+      <div class="row gap-4">
+        <% @lists.each do |list| %>
+          <%= link_to list_path(list), class: "col-4 card-category" do %>
+            <%= list.name %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
